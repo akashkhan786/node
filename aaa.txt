@@ -1,0 +1,2 @@
+const mongoose = require('mongooose')
+mongoose.connect('mongodb://0.0.0.0/E-com');

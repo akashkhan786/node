@@ -1,0 +1,66 @@
+<%-include('Common/head.ejs')-%>
+<title>Hello, world!</title>
+</head>
+<body>
+
+<%-include('Common/header.ejs')-%>   
+
+<div class="container-fluid bg-side-nav">
+   <div class="row">
+      <div class="col-lg-2 sidebaare">
+<%-include('Common/sidebar.ejs')-%>         
+      </div>
+      <div class="col-lg-8">
+
+        <div class="dashboard-content-area">
+        <!-- put your contente -->
+        <h1>All Pages</h1>
+        <table class="table table-bordered m-0 " id="dataTable" width="100%" cellspacing="0">
+           <thead>
+              <tr>
+               <th>Photo</th>
+                 <th>PageUrl</th>
+                 <th>PageMetaDescription</th>
+                 <th>MetaKeyword</th>
+                 <th>PageDetails</th>
+                 <th>PageHeadings</th>
+                 <th>Edit  </th>
+                 <th>Delete</th>
+              </tr>
+           </thead>
+           <tbody>
+            <%x.forEach((y)=>{%>
+              <tr>
+                  <td>
+                     <%if(!y.photo){%>
+                     <img src="/backend/images/1.png" alt="" width="50%">
+                    <%}else{%>
+                     <img src="/backend/images/<%=y.photo%>" alt="" width="50%">
+                     <%}%>
+                  </td>
+                 <td><%=y.pageUrl%></td>
+                  <td><%=y.pageMetacDEescription%></td>
+                 <td><%=y.pageMetakeyword%></td>
+            <td><%=y.pageDetail.slice(0,12)%></td> 
+                 <td><%=y.pageHeading%></td> 
+                 <td>
+                  <a class="btn btn-primary" href="/admin/page/edit-page/<%=y.pageUrl%>">Edit</a>      <!--  /edit/hhh             -->
+                 </td>
+                 <td>
+                  <form style="display: inline;" action="/admin/page/Delete-page/<%=y.pageUrl%>?_method=Delete" method="post">
+                     <button style="cursor: pointer;" type="submit" class="btn btn-danger ml-2">Delete</button>
+                  </form>
+               </td>
+               <!-- <td><%%></td> -->
+              </tr>
+              <%})%>
+
+           </tbody>
+        </table>
+          <center> <br> <a class="btn btn-success btn-md" href="/admin/page/addpage/">Add More Pages</a> </center>
+        <!-- end your content here -->
+       </div>
+      </div>
+   </div>
+</div>
+<%-include('Common/footer')%>
